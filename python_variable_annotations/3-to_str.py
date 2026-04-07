@@ -6,5 +6,4 @@
 
 def to_str(n: float) -> str:
     """Return the str of a float."""
-    result = str(n)
-    return result
+    return str(n)
