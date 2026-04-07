@@ -1,12 +1,21 @@
 #!/usr/bin/env python3
-"""Basic async syntax"""
+"""This module contains an async coroutine that runs wait_random
+multiple times concurrently and returns the delays in ascending order.
+"""
 
 import asyncio
-import random
+from typing import List
+
+wait_random = __import__('0-basic_async_syntax').wait_random
 
 
-async def wait_random(max_delay: int = 10) -> float:
-    """Wait for a random delay between 0 and max_delay (included) and return it."""
-    delay: float = random.uniform(0, max_delay)
-    await asyncio.sleep(delay)
-    return delay
+async def wait_n(n: int, max_delay: int) -> List[float]:
+    """Spawn wait_random n times and return the delays in ascending order."""
+    tasks = [wait_random(max_delay) for _ in range(n)]
+    delays = []
+
+    for task in asyncio.as_completed(tasks):
+        delay = await task
+        delays.append(delay)
+
+    return delays
