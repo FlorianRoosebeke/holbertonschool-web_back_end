@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
-from typing import List
+"""Module for sum_mixed_list function with type annotations."""
+
+from typing import List, Union
 
 
-"""Module for to_str function with type annotations."""
-
-
-
-def sum_mixed_list(mxd_lst: List[int, float]) -> float:
-    """Return the sum of a list of floats."""
+def sum_mixed_list(mxd_lst: List[Union[int, float]]) -> float:
+    """Return the sum of a list of ints and floats."""
     total = sum(mxd_lst)
     return total
