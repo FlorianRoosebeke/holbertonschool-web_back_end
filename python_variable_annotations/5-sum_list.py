@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-from typing import List
+"""Module for sum_list function with type annotations."""
 
-"""Module for to_str function with type annotations."""
+from typing import List
 
 
 def sum_list(input_list: List[float]) -> float:
