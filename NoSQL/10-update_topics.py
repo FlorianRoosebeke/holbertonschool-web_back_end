@@ -2,6 +2,6 @@
 """Module that inserts a new school document into a MongoDB collection."""
 
 
-def insert_school(mongo_collection, **kwargs):
-    """Create a function that insert a new document in a collection"""
-    return mongo_collection.insert_one(kwargs).inserted_id
+def update_topics(mongo_collection, name, topics):
+    """Update topics with topics list"""
+    mongo_collection.update_many({"name": name}, {"$set": {"topics": topics}})
