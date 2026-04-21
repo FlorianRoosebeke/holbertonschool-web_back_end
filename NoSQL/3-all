@@ -1,2 +1,2 @@
-// Inserts a Document in the collection
-db.school.find()
+// lists all documents with name="Holberton school" in the collection school
+db.school.find({ name="Holberton school"})
