@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-from pymongo import MongoClient
 """Module that lists all documents in a MongoDB collection."""
 
 
