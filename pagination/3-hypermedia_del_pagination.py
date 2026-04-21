@@ -35,22 +35,23 @@ class Server:
             dataset = self.dataset()
             truncated_dataset = dataset[:1000]
             self.__indexed_dataset = {
-                i: dataset[i] for i in range(len(dataset))
+                i: truncated_dataset[i] for i in range(len(truncated_dataset))
             }
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> dict:
+        """Return deletion-resilient pagination data starting from index."""
         indexed_dataset = self.indexed_dataset()
-        assert isinstance(index, int) and 0 <= index < len(indexed_dataset)
+        assert isinstance(index, int) and index >= 0
         data = []
         current_index = index
+        max_index = max(indexed_dataset.keys())
 
-        while len(data) < page_size and current_index < len(indexed_dataset + page_size):
+        while len(data) < page_size and current_index <= max_index:
             if current_index in indexed_dataset:
                 data.append(indexed_dataset[current_index])
-                current_index += 1
-        next_index = current_index if current_index < len(
-            indexed_dataset) + page_size else None
+            current_index += 1
+        next_index = current_index if current_index <= max_index else None
         return {
             "index": index,
             "next_index": next_index,
