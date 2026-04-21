@@ -2,6 +2,9 @@
 """Module that lists all documents in a MongoDB collection."""
 
 
-def insert_school(mongo_collection, **kwargs):
-    """Create a function that insert a new document in a collection"""
-    return mongo_collection.insert_one(kwargs).inserted_id
+def update_topics(mongo_collection, name, topics):
+    """Change all topics of a school document based on the name."""
+    mongo_collection.update_many(
+        {"name": name},
+        {"$set": {"topics": topics}}
+    )
