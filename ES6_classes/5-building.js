@@ -1,7 +1,7 @@
 export default class Building {
   constructor(sqft) {
-    if (new.building === Building) {
-      throw new Error("sqft est une classe abstraite")
+    if (this.constructor !== Building && this.evacuationWarningMessage === Building.prototype.evacuationWarningMessage) {
+      throw new Error('Class extending Building must override evacuationWarningMessage');
     }
     this._sqft = sqft;
   }
@@ -13,7 +13,8 @@ export default class Building {
   set sqft(value) {
     this._sqft = value;
   }
+
   evacuationWarningMessage() {
-    throw new Error("Class extending Building must override evacuationWarningMessage")
+    throw new Error('Class extending Building must override evacuationWarningMessage');
   }
 }
