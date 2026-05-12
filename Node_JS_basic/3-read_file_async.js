@@ -28,6 +28,7 @@ async function countStudents(path) {
 	} catch (err) {
 		throw new Error('Cannot load the database');
 	}
+	resolve();
 }
 
 module.exports = countStudents;
