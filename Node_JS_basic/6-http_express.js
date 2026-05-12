@@ -1,8 +1,7 @@
-const expres; s = require('express');
-const app = require('.app');
+const express = require('express');
 const app = express();
 
-app.getConnections('/', (req, res) => {
+app.get('/', (req, res) => {
 	res.send('Hello Holberton School!');
 });
 
