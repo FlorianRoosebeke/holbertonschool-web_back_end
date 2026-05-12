@@ -1,14 +1,15 @@
-console.log('Welcome to Holberton School, what is your name?');
+process.stdout.write('Welcome to Holberton School, what is your name?\n');
 
 process.stdin.resume();
-process.stdin.setEncoding('utf8');
 
-process.stdin.on('data', (chunk) => {
-	const input = chunk.trim();
-	console.log('Your name is:', input);
+process.stdin.on('readable', () => {
+  const input = process.stdin.read();
+
+  if (input) {
+    process.stdout.write(`Your name is: ${input.toString()}`);
+  }
 });
 
 process.stdin.on('end', () => {
-	console.log('This important software is now closing');
+  process.stdout.write('This important software is now closing\n');
 });
-module.exports = myFunction;
