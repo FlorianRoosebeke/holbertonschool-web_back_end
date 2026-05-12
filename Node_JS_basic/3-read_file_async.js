@@ -9,7 +9,7 @@ async function countStudents(path) {
 		const fields = {};
 
 		for (const student of students) {
-			const [firstname, lastname, age, field] = student.split(',');
+			const [firstname, , , field] = student.split(',');
 
 			if (!fields[field]) {
 				fields[field] = [];
@@ -21,9 +21,11 @@ async function countStudents(path) {
 		console.log(`Number of students: ${students.length}`);
 
 		for (const field in fields) {
-			console.log(
-				`Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}`
-			);
+			if (Object.prototype.hasOwnProperty.call(fields, field)) {
+				console.log(
+					`Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}`,
+				);
+			}
 		}
 	} catch (err) {
 		throw new Error('Cannot load the database');
