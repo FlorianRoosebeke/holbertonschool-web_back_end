@@ -10,8 +10,8 @@ const app = http.createServer((req, res) => {
 		const database = process.argv[2];
 
 		countStudents(database)
-			.then((report) => {
-				res.end(`This is the list of our students\n${report}`);
+			.then(() => {
+				res.end('This is the list of our students');
 			})
 			.catch((err) => {
 				res.end(`This is the list of our students\n${err.message}`);
